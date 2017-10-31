@@ -2,7 +2,7 @@ defmodule PaironautsWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", PaironautsWeb.RoomChannel
+  channel "room:*", PaironautsWeb.RoomChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
