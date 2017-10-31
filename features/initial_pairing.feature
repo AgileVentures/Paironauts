@@ -11,7 +11,7 @@ Feature: Initial Pairing
     And the other user should see the room load
     And I should see the room should load
     
-  Scenario: Loading(when no one present)
+  Scenario: Loading (when no one present)
     Given that I visit the home page
     Then I should see "waiting for pair partner ..."
     

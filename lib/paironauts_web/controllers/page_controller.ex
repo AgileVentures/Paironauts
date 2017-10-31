@@ -4,4 +4,8 @@ defmodule PaironautsWeb.PageController do
   def index(conn, _params) do
     render conn, "index.html"
   end
+
+  def pairing(conn, _params) do
+    render conn, "pairing.html"
+  end
 end
