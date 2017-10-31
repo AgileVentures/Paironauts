@@ -19,6 +19,10 @@
     </ul>
   </div>
 
+  <div id="meet">
+
+  </div>
+
   <div class="col-lg-6">
     <h4>Help</h4>
     <ul>
@@ -34,3 +38,9 @@
     </ul>
   </div>
 </div>
+
+<script src="https://meet.jit.si/external_api.js"></script>
+
+<script>
+
+</script>
