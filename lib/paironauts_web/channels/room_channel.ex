@@ -13,6 +13,11 @@ defmodule PaironautsWeb.RoomChannel do
     {:ok, socket}
   end
 
+  def handle_in(name, %{"body" => content}, socket) do
+    broadcast!(socket, "live_response", %{html: "response"})
+    {:noreply, socket}
+  end
+
   def join("room:" <> _private_room_id, _params, _socket) do
     {:error, %{reason: "unauthorized"}}
   end
