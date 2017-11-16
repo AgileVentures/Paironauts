@@ -8,13 +8,13 @@ defmodule PaironautsWeb.RoomChannel do
   def join("room:pairing", _message, socket) do
     # if we have a count of open connections to websocket
     # https://hexdocs.pm/phoenix/Phoenix.Presence.html
-    # when we have two, we could send js to redirect both to room with 
+    # when we have two, we could send js to redirect both to room with
     # specific id ... maybe using https://developer.mozilla.org/en-US/docs/Web/API/Location/replace
     {:ok, socket}
   end
 
   def handle_in(name, %{"body" => content}, socket) do
-    broadcast!(socket, "live_response", %{html: "response"})
+    broadcast!(socket, "live_response", %{url: "/pairing"})
     {:noreply, socket}
   end
 
