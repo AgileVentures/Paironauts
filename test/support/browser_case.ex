@@ -24,7 +24,7 @@ defmodule PaironautsWeb.BrowserCase do
         import Ecto.Changeset
         import Ecto.Query
   
-        import Paironauts.Router.Helpers
+        import PaironautsWeb.Router.Helpers
       end
     end
   
