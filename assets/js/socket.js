@@ -54,17 +54,20 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 socket.connect()
 
 // Now that you are connected, you can join channels with a topic:
+
+// window.location.pathname
+
 let channel = socket.channel("room:pairing", {})
 channel.join()
   .receive("ok", resp => {
     console.log("Joined Pairing Room successfully", resp)
-    channel.push('comment:add', { body: 'body' })
+    channel.push('start_pairing', { pathname: window.location.pathname })
   })
   .receive("error", resp => { console.log("Unable to join", resp) })
 
 channel.on('live_response', payload => {
-  console.log("received response", payload)
-  document.location.replace(payload.url)
+  console.log("received response", payload) 
+  window.location.replace(payload.url);
 });
 
 

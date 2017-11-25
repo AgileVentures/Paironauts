@@ -2,6 +2,11 @@ defmodule PaironautsWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :paironauts
 
   socket "/socket", PaironautsWeb.UserSocket
+  
+  # Enable concurrent SQL sandbox testing if enabled by app
+  if Application.get_env(:paironauts, :sql_sandbox) do
+    plug Phoenix.Ecto.SQL.Sandbox
+  end
 
   # Serve at "/" the static files from "priv/static" directory.
   #
