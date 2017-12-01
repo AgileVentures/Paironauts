@@ -1,4 +1,4 @@
-if(typeof JitsiMeetExternalAPI !== undefined) {
+if(typeof JitsiMeetExternalAPI != "undefined") {
   var domain = "meet.jit.si";
   var options = {
       roomName: "JitsiMeetAPIExample",
