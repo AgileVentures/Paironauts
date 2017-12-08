@@ -17,6 +17,7 @@ defmodule PaironautsWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/pairing", PageController, :pairing
+    get "/mob", PageController, :mob
     get "/", PageController, :index
   end
 
