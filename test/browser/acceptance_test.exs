@@ -19,12 +19,6 @@ defmodule Paironauts.AcceptanceTest do
     # And the other user should see the room load
     # And I should see the room should load
 
-    def checkout_session do
-      {:ok, session} = Wallaby.start_session
-      visit(session, Phoenix.Ecto.SQL.Sandbox.path_for(Allocations.Repo, self()))
-      session
-    end
-
     test "when a user chooses 'mob' from the homepage, they are added to a single shared Jitsi", %{session: session} do
       # This is barebones.
       # We should check that users are being added to the Jitsi
@@ -34,15 +28,15 @@ defmodule Paironauts.AcceptanceTest do
       |> assert_has(css("#meet"))
     end
 
-    test "when two users choose 'pair' from the homepage, they are added to a Jitsi", %{session: session} do
-      session
+    # third user should not be added to the same jitsi
+    test "when two users choose 'pair' from the homepage, they are added to a Jitsi", %{session: session1} do
+      session1
       |> visit("/")
       |> click(css("#pair"))
       |> assert_has(css("#meet"))
 
-      session_two = checkout_session
-      
-      session_two
+      {:ok, session2} = Wallaby.start_session
+      session2
       |> visit("/")
       |> has_text?("Paironauts")
       |> assert

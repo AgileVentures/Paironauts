@@ -29,8 +29,8 @@ defmodule PaironautsWeb.RoomChannel do
   # end
 
   def handle_in(name, %{"pathname" => pathname}, socket) do
-    if name == "start_pairing" and pathname == "/" do
-      # broadcast!(socket, "live_response", %{url: "/pairing"})
+    if name == "start_pairing" and pathname == "/pairing_waiting" do
+      # broadcast!(socket, "live_response", %{url: "/pairing_room_1"})
     end
     {:noreply, socket}
   end
