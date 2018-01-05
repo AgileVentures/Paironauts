@@ -16,17 +16,18 @@ defmodule PaironautsWeb.RoomChannel do
 
 
     send(self(), :after_join)
-    # {:ok, assign(socket, :user_id, ...)}
-    {:ok, socket}
+    user_id = :rand.uniform(1000)
+    {:ok, assign(socket, :user_id, user_id )}
+    #{:ok, socket}
   end
 
-  # def handle_info(:after_join, socket) do
-  #   push socket, "presence_state", LobbyPresence.list(socket)
-  #   {:ok, _} = LobbyPresence.track(socket, socket.assigns.user_id, %{
-  #     online_at: inspect(System.system_time(:seconds))
-  #   })
-  #   {:noreply, socket}
-  # end
+  def handle_info(:after_join, socket) do
+    push socket, "presence_state", LobbyPresence.list(socket)
+    {:ok, _} = LobbyPresence.track(socket, socket.assigns.user_id, %{
+      online_at: inspect(System.system_time(:seconds))
+    })
+    {:noreply, socket}
+  end
 
   def handle_in(name, %{"pathname" => pathname}, socket) do
     if name == "start_pairing" and pathname == "/pairing_waiting" do
