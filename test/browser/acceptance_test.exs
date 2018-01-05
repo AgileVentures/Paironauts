@@ -3,8 +3,6 @@ defmodule Paironauts.AcceptanceTest do
   
     import Wallaby.Query 
   
-
-
     # Right now it works so I don't really want to break it...
     # Just put that functionality somewhere else.
 
@@ -32,13 +30,29 @@ defmodule Paironauts.AcceptanceTest do
     test "when two users choose 'pair' from the homepage, they are added to a Jitsi", %{session: session1} do
       session1
       |> visit("/")
-      |> click(css("#pair"))
-      |> assert_has(css("#meet"))
+      |> click(css("#pair")) 
+      |> has_text?("Waiting for pair partner")
+      |> assert
+
+      # will see "waiting for pair"
+      # and jitsi visible
+      # |> assert_has(css("#meet"))  # checking for the meet div
 
       {:ok, session2} = Wallaby.start_session
       session2
       |> visit("/")
-      |> has_text?("Paironauts")
-      |> assert
+      |> click(css("#pair"))
+      |> has_text?("Waiting for pair partner")
+      |> refute
+
+      # check redirected to /pairing-2345678
+      # check 
+      # |> has_text?("Paironauts") 
+      # |> assert
+
+      # session1
+      # # check redirected to /pairing-2345678
+      # |> assert
+
     end  
   end
