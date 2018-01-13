@@ -2,7 +2,7 @@ defmodule PaironautsWeb.RoomChannel do
   @moduledoc """
   The interface between the browser and the Paironaut sever.
   """
-  alias Paironauts.LobbyPresence
+  alias Paironauts.Presence
   use Phoenix.Channel
 
   def join("room:pairing", _message, socket) do
@@ -14,16 +14,13 @@ defmodule PaironautsWeb.RoomChannel do
     # how many clients listening on websocket
     # if >2 then broadcast the pairing redirect
 
-
     send(self(), :after_join)
-    user_id = :rand.uniform(1000)
-    {:ok, assign(socket, :user_id, user_id )}
-    #{:ok, socket}
+    {:ok, socket}
   end
 
   def handle_info(:after_join, socket) do
-    push socket, "presence_state", LobbyPresence.list(socket)
-    {:ok, _} = LobbyPresence.track(socket, socket.assigns.user_id, %{
+    push socket, "presence_state", Presence.list(socket)
+    {:ok, _} = Presence.track(socket, socket.assigns.user_id, %{
       online_at: inspect(System.system_time(:seconds))
     })
     {:noreply, socket}
