@@ -2,7 +2,7 @@ defmodule PaironautsWeb.RoomChannel do
   @moduledoc """
   The interface between the browser and the Paironaut sever.
   """
-  alias Paironauts.Presence
+  alias PaironautsWeb.Presence
   use Phoenix.Channel
 
   def join("room:pairing", _message, socket) do

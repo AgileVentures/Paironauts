@@ -17,7 +17,6 @@ defmodule Paironauts do
       worker(Paironauts.Repo, []),
       # Here you could define other workers and supervisors as children
       # worker(Paironauts.Worker, [arg1, arg2, arg3]),
-      supervisor(Paironauts.Presence, []),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
