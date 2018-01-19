@@ -16,6 +16,7 @@ defmodule PaironautsWeb.Router do
   scope "/", PaironautsWeb do
     pipe_through :browser # Use the default browser stack
 
+    get "/pairing_room_1", PageController, :pairing_room_1
     get "/pairing", PageController, :pairing
     get "/mob", PageController, :mob
     get "/", PageController, :index

@@ -45,6 +45,9 @@ defmodule Paironauts.AcceptanceTest do
       |> has_text?("Waiting for pair partner")
       |> refute
 
+      session1
+      |> has_text?("Pairing session")
+
       # check redirected to /pairing-2345678
       # check 
       # |> has_text?("Paironauts") 
