@@ -20,6 +20,7 @@ defmodule PaironautsWeb.RoomChannel do
 
   def handle_info(:after_join, socket) do
     push socket, "presence_state", Presence.list(socket)
+    IO.inspect Presence.list(socket)
     {:ok, _} = Presence.track(socket, socket.assigns.user_id, %{
       online_at: inspect(System.system_time(:seconds))
     })
@@ -27,8 +28,12 @@ defmodule PaironautsWeb.RoomChannel do
   end
 
   def handle_in(name, %{"pathname" => pathname}, socket) do
-    if name == "start_pairing" and pathname == "/pairing_waiting" do
-      # broadcast!(socket, "live_response", %{url: "/pairing_room_1"})
+    if name == "start_pairing" and pathname == "/pairing" do
+      IO.puts 'start_pairing request'
+      # 
+      if socket |> Presence.list |> Enum.count > 1 do
+        broadcast!(socket, "live_response", %{url: "/pairing_room_1"})
+      end
     end
     {:noreply, socket}
   end
