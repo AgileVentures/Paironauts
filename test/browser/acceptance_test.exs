@@ -42,6 +42,7 @@ defmodule Paironauts.AcceptanceTest do
       session2
       |> visit("/")
       |> click(css("#pair"))
+      |> find(css("#pairing_session"))
       |> has_text?("Waiting for pair partner")
       |> refute
 
