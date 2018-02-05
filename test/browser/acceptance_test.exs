@@ -48,8 +48,9 @@ defmodule Paironauts.AcceptanceTest do
 
       session1
       |> has_text?("Pairing session")
+      |> assert
 
-      # check redirected to /pairing-2345678
+      # check redirected to /pairing-2345678 /pairing/2345678
       # check 
       # |> has_text?("Paironauts") 
       # |> assert
@@ -59,4 +60,40 @@ defmodule Paironauts.AcceptanceTest do
       # |> assert
 
     end  
+    
+    # ensure only two users arrive in pairing session (and both of them were waiting to pair)
+    # 1. don't drag users off other pages
+    # 2. don't drag users out of existing pairing sessions 
+
+    test "third user on home page is not pulled into pairing session", %{session: session1} do
+      session1
+      |> visit("/")
+      |> click(css("#pair")) 
+      |> has_text?("Waiting for pair partner")
+      |> assert
+
+      # user on home page (also need to check for user in pairing session, and third user waiting)
+      {:ok, session3} = Wallaby.start_session
+      session3
+      |> visit("/")
+      |> has_text?("Waiting for pair partner")
+      |> refute
+
+
+      {:ok, session2} = Wallaby.start_session
+      session2
+      |> visit("/")
+      |> click(css("#pair"))
+      |> find(css("#pairing_session"))
+      |> has_text?("Waiting for pair partner")
+      |> refute
+
+      session3
+      |> has_text?("Pairing session")
+      |> refute
+    
+    end     
+    # ensure that a third user somewhere on the site is not dragged into the pairing room
+    # both if on homepage and even if on the pairing waiting room, or in other pairing 
+
   end
