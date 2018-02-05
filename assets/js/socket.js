@@ -59,15 +59,17 @@ socket.connect()
 
 let channel = socket.channel("room:pairing", {})
 channel.join()
-  .receive("ok", resp => { 
-    // console.log("Joined Pairing Room successfully", resp) 
+  .receive("ok", resp => {
+    // console.log("Joined Pairing Room successfully", resp)
     channel.push('start_pairing', { pathname: window.location.pathname })
   })
   .receive("error", resp => { console.log("Unable to join", resp) })
 
 channel.on('live_response', payload => {
-  // console.log("received response", payload) 
-  window.location.replace(payload.url);
+  console.log("pathname", window.location.pathname);
+  if (window.location.pathname === "/pairing") {
+    window.location.replace(payload.url);
+  }
 });
 
 
