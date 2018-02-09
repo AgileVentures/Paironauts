@@ -65,35 +65,36 @@ defmodule Paironauts.AcceptanceTest do
     # 1. don't drag users off other pages
     # 2. don't drag users out of existing pairing sessions 
 
-    test "third user on home page is not pulled into pairing session", %{session: session1} do
-      session1
+    test "user on home page who hasn't chosen to pair is not pulled into pairing session", %{session: first_user_wanting_to_pair} do
+      first_user_wanting_to_pair
       |> visit("/")
       |> click(css("#pair")) 
       |> has_text?("Waiting for pair partner")
       |> assert
 
       # user on home page (also need to check for user in pairing session, and third user waiting)
-      {:ok, session3} = Wallaby.start_session
-      session3
+      {:ok, user_not_wanting_to_pair} = Wallaby.start_session
+      user_not_wanting_to_pair
       |> visit("/")
       |> has_text?("Waiting for pair partner")
       |> refute
 
-
-      {:ok, session2} = Wallaby.start_session
-      session2
+      {:ok, second_user_wanting_to_pair} = Wallaby.start_session
+      second_user_wanting_to_pair
       |> visit("/")
       |> click(css("#pair"))
       |> find(css("#pairing_session"))
       |> has_text?("Waiting for pair partner")
       |> refute
 
-      session3
+      user_not_wanting_to_pair
       |> has_text?("Pairing session")
       |> refute
     
     end     
     # ensure that a third user somewhere on the site is not dragged into the pairing room
+    test '...'
+    test '...'
     # both if on homepage and even if on the pairing waiting room, or in other pairing 
 
   end
