@@ -57,6 +57,9 @@ socket.connect()
 
 // window.location.pathname
 
+// how to do sockets?
+
+
 let channel = socket.channel("room:pairing", {})
 channel.join()
   .receive("ok", resp => { 

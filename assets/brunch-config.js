@@ -2,7 +2,11 @@ exports.config = {
   // See http://brunch.io/#documentation for docs.
   files: {
     javascripts: {
-      joinTo: "js/app.js"
+      // We want to pull in everything except socket here.
+      joinTo: {
+        "js/app.js": /js\/app\.js/,
+        "js/socket.js": /js\/socket\.js/
+      }
 
       // To use a separate vendor.js bundle, specify two files path
       // http://brunch.io/docs/config#-files-
