@@ -1,8 +1,9 @@
 defmodule Paironauts.AcceptanceTest do
     use PaironautsWeb.BrowserCase, async: true
-  
-    import Wallaby.Query 
-  
+
+    import Wallaby.Query
+    alias Wallaby.Query
+
     # Right now it works so I don't really want to break it...
     # Just put that functionality somewhere else.
 
@@ -21,7 +22,7 @@ defmodule Paironauts.AcceptanceTest do
       # This is barebones.
       # We should check that users are being added to the Jitsi
       session
-      |> visit("/") 
+      |> visit("/")
       |> click(css("#mob"))
       |> assert_has(css("#meet"))
     end
@@ -30,7 +31,7 @@ defmodule Paironauts.AcceptanceTest do
     test "when two users choose 'pair' from the homepage, they are added to a Jitsi", %{session: session1} do
       session1
       |> visit("/")
-      |> click(css("#pair")) 
+      |> click(css("#pair"))
       |> has_text?("Waiting for pair partner")
       |> assert
 
@@ -51,50 +52,51 @@ defmodule Paironauts.AcceptanceTest do
       |> assert
 
       # check redirected to /pairing-2345678 /pairing/2345678
-      # check 
-      # |> has_text?("Paironauts") 
+      # check
+      # |> has_text?("Paironauts")
       # |> assert
 
       # session1
       # # check redirected to /pairing-2345678
       # |> assert
 
-    end  
-    
+    end
+
     # ensure only two users arrive in pairing session (and both of them were waiting to pair)
     # 1. don't drag users off other pages
-    # 2. don't drag users out of existing pairing sessions 
+    # 2. don't drag users out of existing pairing sessions
 
     test "user on home page who hasn't chosen to pair is not pulled into pairing session", %{session: first_user_wanting_to_pair} do
       first_user_wanting_to_pair
       |> visit("/")
-      |> click(css("#pair")) 
-      |> has_text?("Waiting for pair partner")
-      |> assert
+      |> click(css("#pair"))
+      |> assert_has(Query.text("Waiting for pair partner"))
 
       # user on home page (also need to check for user in pairing session, and third user waiting)
       {:ok, user_not_wanting_to_pair} = Wallaby.start_session
       user_not_wanting_to_pair
       |> visit("/")
-      |> has_text?("Waiting for pair partner")
-      |> refute
+      |> refute_has(Query.text("Waiting for pair partner"))
 
       {:ok, second_user_wanting_to_pair} = Wallaby.start_session
       second_user_wanting_to_pair
       |> visit("/")
       |> click(css("#pair"))
+      |> refute_has(Query.text("Waiting for pair partner"))
       |> find(css("#pairing_session"))
-      |> has_text?("Waiting for pair partner")
-      |> refute
+      |> assert_has(Query.text("Pairing session"))
+
+      first_user_wanting_to_pair
+      |> find(css("#pairing_session"))
+      |> assert_has(Query.text("Pairing session"))
 
       user_not_wanting_to_pair
-      |> has_text?("Pairing session")
-      |> refute
-    
-    end     
+      |> refute_has(Query.text("Pairing session"))
+
+    end
     # ensure that a third user somewhere on the site is not dragged into the pairing room
-    test '...'
-    test '...'
-    # both if on homepage and even if on the pairing waiting room, or in other pairing 
+    # test '...'
+    # test '...'
+    # both if on homepage and even if on the pairing waiting room, or in other pairing
 
   end
