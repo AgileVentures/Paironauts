@@ -14,6 +14,7 @@ defmodule Paironauts.Application do
       supervisor(PaironautsWeb.Endpoint, []),
       # Start your own worker by calling: Paironauts.Worker.start_link(arg1, arg2, arg3)
       # worker(Paironauts.Worker, [arg1, arg2, arg3]),
+      supervisor(PaironautsWeb.Presence, []),
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
