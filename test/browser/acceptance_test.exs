@@ -70,28 +70,32 @@ defmodule Paironauts.AcceptanceTest do
       first_user_wanting_to_pair
       |> visit("/")
       |> click(css("#pair"))
-      |> assert_has(Query.text("Waiting for pair partner"))
+      |> assert_has(css("#wait", text: "Waiting for pair partner..."))
+
+      #require IEx ; IEx.pry
+      # |> assert_has(Query.text("Waiting for pair partner..."))
 
       # user on home page (also need to check for user in pairing session, and third user waiting)
       {:ok, user_not_wanting_to_pair} = Wallaby.start_session
       user_not_wanting_to_pair
       |> visit("/")
-      |> refute_has(Query.text("Waiting for pair partner"))
+      |> refute_has(css("#wait", text: "Waiting for pair partner..."))
 
       {:ok, second_user_wanting_to_pair} = Wallaby.start_session
       second_user_wanting_to_pair
       |> visit("/")
       |> click(css("#pair"))
-      |> refute_has(Query.text("Waiting for pair partner"))
-      |> find(css("#pairing_session"))
-      |> assert_has(Query.text("Pairing session"))
+      |> refute_has(css("#wait", text: "Waiting for pair partner..."))
+
+      # |> take_screenshot 
+
+      |> assert_has(css("#pairing_session", text: "Pairing Session"))
 
       first_user_wanting_to_pair
-      |> find(css("#pairing_session"))
-      |> assert_has(Query.text("Pairing session"))
+      |> assert_has(css("#pairing_session", text: "Pairing Session"))
 
       user_not_wanting_to_pair
-      |> refute_has(Query.text("Pairing session"))
+      |> refute_has(css("#pairing_session", text: "Pairing Session"))
 
     end
     # ensure that a third user somewhere on the site is not dragged into the pairing room
