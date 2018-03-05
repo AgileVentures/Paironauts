@@ -30,7 +30,7 @@ defmodule Paironauts.AcceptanceTest do
     # third user should not be added to the same jitsi
     test "when two users choose 'pair' from the homepage, they are added to a Jitsi", %{session: session1} do
       session1
-      |> visit("/")
+      |> visit("/") 
       |> click(css("#pair"))
       |> has_text?("Waiting for pair partner")
       |> assert
@@ -86,16 +86,13 @@ defmodule Paironauts.AcceptanceTest do
       |> visit("/")
       |> click(css("#pair"))
       |> refute_has(css("#wait", text: "Waiting for pair partner..."))
-
-      # |> take_screenshot 
-
-      |> assert_has(css("#pairing_session", text: "Pairing Session"))
+      |> assert_has(css("#pairing_session", text: "Pairing session"))
 
       first_user_wanting_to_pair
-      |> assert_has(css("#pairing_session", text: "Pairing Session"))
+      |> assert_has(css("#pairing_session", text: "Pairing session"))
 
       user_not_wanting_to_pair
-      |> refute_has(css("#pairing_session", text: "Pairing Session"))
+      |> refute_has(css("#pairing_session", text: "Pairing session"))
 
     end
     # ensure that a third user somewhere on the site is not dragged into the pairing room
