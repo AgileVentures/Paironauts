@@ -66,8 +66,10 @@ channel.join()
   .receive("error", resp => { console.log("Unable to join", resp) })
 
 channel.on('live_response', payload => {
-  console.log("received response", payload) 
-  window.location.replace(payload.url);
+  console.log("pathname", window.location.pathname);
+  if (window.location.pathname === "/pairing") {
+    window.location.replace(payload.url);
+  }
 });
 
 
