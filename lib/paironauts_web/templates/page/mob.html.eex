@@ -1,9 +1,8 @@
-<%# We can pop this into a common view, common controller action, and pop in 
-    something in the assigns that gets populated from a UI element interaction 
-    
+<%# We can pop this into a common view, common controller action, and pop in
+    something in the assigns that gets populated from a UI element interaction
+
     Duplicating for now -- safer and lets us use the right abstraction when it emerges %>
 
 <div id="meet">
 
 </div>
-<script src="https://meet.jit.si/external_api.js"></script>
