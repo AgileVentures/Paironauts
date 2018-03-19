@@ -1,5 +1,31 @@
 # Paironauts
 
+## Installation
+
+```
+$ git clone https://github.com/AgileVentures/Paironauts
+$ cd Paironauts
+```
+We recommend Elixir 1.6.3
+
+install the dependencies
+
+```
+$ mkdir priv/repo/migrations
+$ mix deps.get
+$ cd assets && npm install && cd ..
+```
+
+run the tests
+
+```
+$ mix test
+```
+
+
+# BoilerPlate README
+
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
