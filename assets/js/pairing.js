@@ -5,7 +5,7 @@
 if(typeof JitsiMeetExternalAPI != "undefined") {
   var domain = "meet.jit.si";
   var options = {
-      roomName: document.title,
+      roomName: window.location.pathname,
       width: 700,
       height: 700,
       parentNode: document.querySelector('#meet')
