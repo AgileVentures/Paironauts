@@ -35,7 +35,7 @@ defmodule PaironautsWeb.RoomChannel do
     IO.inspect Presence.list(socket)
     uuid = Ecto.UUID.generate
     if socket |> Presence.list |> Enum.count > 1 do
-      broadcast!(socket, "live_response", %{url: "/pairing_room_#{uuid}"})
+      broadcast!(socket, "live_response", %{url: "/pairing_rooms/#{uuid}"})
     end
     {:noreply, socket}
   end
