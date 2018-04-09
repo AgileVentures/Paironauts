@@ -96,11 +96,28 @@ defmodule Paironauts.AcceptanceTest do
 
     end
 
-    test "a user joining the pairing lobby can see other users", %{session: session} do
+    test "a user can supply a name", %{session: session} do
       session
+      |> visit("/")
+      |> assert_has(css("#name-field"))
+      |> fill_in(text_field("name-field"), with: "Fred")
+
+    end
+
+    @tag :pending
+    test "a user joining the pairing lobby can see other users", %{session: user1} do
+      user1
       |> visit("/")
       |> click(css("#pairing-lobby"))
       |> assert_has(css("#user-list"))
+
+      {:ok, user2} = Wallaby.start_session
+
+      user2
+      |> visit("/")
+      |> click(css("#pairing-lobby"))
+      |> assert_has(css("#user-list", text: "Fred"))
+
     end
 
   end

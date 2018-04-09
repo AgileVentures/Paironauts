@@ -5,8 +5,10 @@
 
 <%= button("Mob", to: "/mob", method: "get", class: "btn", id: "mob") %>
 <%= button("Pair", to: "/pairing", method: "get", class: "btn", id: "pair") %>
-<%= button("Pairing Lobby", to: "/pairing_lobby", method: "get", class: "btn", id: "pairing-lobby") %>
-
+<%= form_for @conn, page_path(@conn, :pairing_lobby), [as: :user_name], fn f -> %>
+  <%= text_input :user, :name, value: "Please enter your name", id: "name-field" %>
+  <%= submit "Pairing Lobby" %>
+<% end %>
 
 <%# <div class="row marketing">
   <div class="col-lg-6">
@@ -39,4 +41,3 @@
     </ul>
   </div>
 </div> %>
-
