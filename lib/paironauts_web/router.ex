@@ -20,6 +20,7 @@ defmodule PaironautsWeb.Router do
     get "/pairing", PageController, :pairing
     get "/mob", PageController, :mob
     get "/", PageController, :index
+    get "/.well-known/acme-challenge/:key", PageController, :ssl
   end
 
   # Other scopes may use custom stacks.
