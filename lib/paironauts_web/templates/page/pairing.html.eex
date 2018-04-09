@@ -1,5 +1,5 @@
 <%# We can pop this into a common view, common controller action, and pop in 
-    something in the assigns that gets populated from a UI element interaction 
-    
+    something in the assigns that gets populated from a UI element interaction
+
     Duplicating for now -- safer and lets us use the right abstraction when it emerges %>
 <div id="wait">Waiting for pair partner...</div>

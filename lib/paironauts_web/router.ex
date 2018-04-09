@@ -18,6 +18,7 @@ defmodule PaironautsWeb.Router do
 
     get "/pairing_rooms/:room_id", PageController, :pairing_rooms
     get "/pairing", PageController, :pairing
+    get "/pairing_lobby", PageController, :pairing_lobby
     get "/mob", PageController, :mob
     get "/", PageController, :index
   end

@@ -11,9 +11,13 @@ defmodule PaironautsWeb.PageController do
 
   def pairing_rooms(conn, _params) do
     render conn, "pairing_room.html"
-  end  
+  end
+
+  def pairing_lobby(conn, _params) do
+    render conn, "pairing_lobby.html"
+  end
 
   def mob(conn, _params) do
     render conn, "mob.html"
-  end  
+  end
 end
