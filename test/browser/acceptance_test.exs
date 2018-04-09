@@ -43,7 +43,7 @@ defmodule Paironauts.AcceptanceTest do
       session2
       |> visit("/")
       |> click(css("#pair"))
-      |> find(css("#pairing_session"))
+      |> find(css("#pairing-session"))
       |> has_text?("Waiting for pair partner")
       |> refute
 
@@ -86,18 +86,21 @@ defmodule Paironauts.AcceptanceTest do
       |> visit("/")
       |> click(css("#pair"))
       |> refute_has(css("#wait", text: "Waiting for pair partner..."))
-      |> assert_has(css("#pairing_session", text: "Pairing session"))
+      |> assert_has(css("#pairing-session", text: "Pairing session"))
 
       first_user_wanting_to_pair
-      |> assert_has(css("#pairing_session", text: "Pairing session"))
+      |> assert_has(css("#pairing-session", text: "Pairing session"))
 
       user_not_wanting_to_pair
-      |> refute_has(css("#pairing_session", text: "Pairing session"))
+      |> refute_has(css("#pairing-session", text: "Pairing session"))
 
     end
-    # ensure that a third user somewhere on the site is not dragged into the pairing room
-    # test '...'
-    # test '...'
-    # both if on homepage and even if on the pairing waiting room, or in other pairing
+    
+    test "a user joining the pairing lobby can see other users", %{session: session} do
+      session
+      |> visit("/")
+      |> click(css("#pairing-lobby"))
+      #|> assert_has(css("#user-list"))
+    end  
 
   end

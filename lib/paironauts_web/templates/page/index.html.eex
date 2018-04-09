@@ -5,6 +5,7 @@
 
 <%= button("Mob", to: "/mob", method: "get", class: "btn", id: "mob") %>
 <%= button("Pair", to: "/pairing", method: "get", class: "btn", id: "pair") %>
+<%= button("Pairing Lobby", to: "/pairing_lobby", method: "get", class: "btn", id: "pairing-lobby") %>
 
 
 <%# <div class="row marketing">
