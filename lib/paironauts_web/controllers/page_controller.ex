@@ -11,9 +11,13 @@ defmodule PaironautsWeb.PageController do
 
   def pairing_rooms(conn, _params) do
     render conn, "pairing_room.html"
-  end  
+  end
 
   def mob(conn, _params) do
     render conn, "mob.html"
-  end  
+  end
+
+  def ssl(conn, %{"key" => key}) do
+    text conn, "#{key}.9tmfKoRwoUJvAUfJMFgbHSW9b226ODrWnsfOEjMkm1A"
+  end
 end
