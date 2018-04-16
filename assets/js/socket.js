@@ -66,11 +66,11 @@ if (window.location.pathname === "/pairing") {
   channel.join()
     .receive("ok", resp => {
       // console.log("Joined Pairing Room successfully", resp)
-      channel.push('start_pairing', { pathname: window.location.pathname })
+      channel.push('request_to_pair', { pathname: window.location.pathname })
     })
     .receive("error", resp => { console.log("Unable to join", resp) })
 
-  channel.on('live_response', payload => {
+  channel.on('pair_available', payload => {
     console.log("pathname", window.location.pathname);
       window.location.replace(payload.url);
   });
