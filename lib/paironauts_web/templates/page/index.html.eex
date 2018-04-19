@@ -3,8 +3,8 @@
   <p class="lead">Find your pair.</p>
 </div>
 
-<%= button("Mob", to: "/mob", method: "get", class: "btn", id: "mob") %>
-<%= button("Pair", to: "/pairing", method: "get", class: "btn", id: "pair") %>
+<%=# button("Mob", to: "/mob", method: "get", class: "btn", id: "mob") %>
+<%= button("Click here to Pair", to: "/pairing", method: "get", class: "btn, button", id: "pair") %>
 
 
 <%# <div class="row marketing">
