@@ -10,7 +10,7 @@ defmodule PaironautsWeb.RoomChannel do
     # https://hexdocs.pm/phoenix/Phoenix.Presence.html
     # when we have two, we could send js to redirect both to room with
     # specific id ... maybe using https://developer.mozilla.org/en-US/docs/Web/API/Location/replace
-   
+
     # how many clients listening on websocket
     # if >2 then broadcast the pairing redirect
 
@@ -30,12 +30,12 @@ defmodule PaironautsWeb.RoomChannel do
     Handler for start pairing message
   """
 
-  def handle_in("start_pairing", %{"pathname" => "/pairing"}, socket) do
-    IO.puts 'start_pairing request'
+  def handle_in("request_to_pair", %{"pathname" => "/pairing"}, socket) do
+    IO.puts 'request_to_pair request'
     IO.inspect Presence.list(socket)
     uuid = Ecto.UUID.generate
     if socket |> Presence.list |> Enum.count > 1 do
-      broadcast!(socket, "live_response", %{url: "/pairing_rooms/#{uuid}"})
+      broadcast!(socket, "pair_available", %{url: "/pairing_rooms/#{uuid}"})
     end
     {:noreply, socket}
   end
