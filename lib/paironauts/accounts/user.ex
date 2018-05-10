@@ -5,9 +5,8 @@ defmodule Paironauts.Accounts.User do
 
   schema "users" do
     field :hashed_password, :string
-    field :permissions, :map
     field :username, :string
-
+    field :password, :string, virtual: true # Virtual password field to hold plain text passwords.
     timestamps()
   end
 
@@ -19,5 +18,13 @@ defmodule Paironauts.Accounts.User do
     |> unique_constraint(:username)
     |> put_hashed_password()
   end
+
+  defp put_hashed_password(changeset) do
+    case changeset do
+      %Ecto.Changeset{valid?: true, changes: %{password: password}} ->
+        put_change(changeset, :hashed_password, Comeonin.Bcrypt.hashpwsalt(password))
+      _ ->
+        changeset
+    end
   end
 end

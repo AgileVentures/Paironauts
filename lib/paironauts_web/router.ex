@@ -22,8 +22,8 @@ defmodule PaironautsWeb.Router do
     get "/", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", PaironautsWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", PaironautsWeb do
+    pipe_through :api
+    resources "/users", UserController, except: [:new, :edit]
+  end
 end
