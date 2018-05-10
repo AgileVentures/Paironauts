@@ -13,6 +13,10 @@ defmodule PaironautsWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :auth do
+    plug PaironautsWeb.Plug.AuthAccessPipeline
+  end
+
   scope "/", PaironautsWeb do
     pipe_through :browser # Use the default browser stack
 
@@ -24,6 +28,11 @@ defmodule PaironautsWeb.Router do
 
   scope "/api", PaironautsWeb do
     pipe_through :api
+    scope "/auth" do
+      post "/identity/callback", AuthenticationController, :identity_callback
+    end
+
+    pipe_through :auth
     resources "/users", UserController, except: [:new, :edit]
   end
 end

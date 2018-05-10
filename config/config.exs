@@ -22,6 +22,26 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+config :ueberauth, Ueberauth,
+  base_path: "/api/auth",
+  providers: [
+    identity: {Ueberauth.Strategy.Identity, [
+      callback_methods: ["POST"],
+      callback_path: "/api/auth/identity/callback",
+      nickname_field: :username,
+      param_nesting: "user",
+      uid_field: :username
+    ]}
+  ]
+
+config :paironauts, Paironauts.Guardian,
+  issuer: "Paironauts",
+  secret_key: "not a real secret key"
+
+config :paironauts, PaironautsWeb.Plug.AuthAccessPipeline,
+    module: Paironauts.Guardian,
+    error_handler: PaironautsWeb.Plug.AuthErrorHandler
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"

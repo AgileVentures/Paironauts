@@ -11,6 +11,9 @@ use Mix.Config
 config :paironauts, PaironautsWeb.Endpoint,
   secret_key_base: System.get_env("SECRET_KEY_BASE")
 
+config :paironauts, Paironauts.Guardian,
+  secret_key: System.get_env("SECRET_KEY_GUARDIAN")
+
 # Configure your database
 config :paironauts, Paironauts.Repo,
   adapter: Ecto.Adapters.Postgres,
