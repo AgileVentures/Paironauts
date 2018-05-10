@@ -6,7 +6,6 @@ defmodule Paironauts.Repo.Migrations.CreateUsers do
       add :username, :string
       add :email_address, :string
       add :hashed_password, :string
-      add :permissions, :map
 
       timestamps()
     end

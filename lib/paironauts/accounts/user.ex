@@ -1,7 +1,7 @@
 defmodule Paironauts.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
-
+  alias Paironauts.Accounts.User
 
   schema "users" do
     field :hashed_password, :string
@@ -12,10 +12,12 @@ defmodule Paironauts.Accounts.User do
   end
 
   @doc false
-  def changeset(user, attrs) do
+  def changeset(%User{} = user, attrs) do
     user
-    |> cast(attrs, [:username, :hashed_password, :permissions])
-    |> validate_required([:username, :hashed_password, :permissions])
+    |> cast(attrs, [:username, :password])
+    |> validate_required([:username, :password])
     |> unique_constraint(:username)
+    |> put_hashed_password()
+  end
   end
 end
