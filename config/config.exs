@@ -48,6 +48,10 @@ config :guardian, Guardian,
     ],
   }
 
+  config :guardian_db, GuardianDb,
+    repo: Paironauts.Repo,
+    sweep_interval: 60 # 60 mins
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
