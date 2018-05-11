@@ -6,8 +6,8 @@ defmodule Paironauts.AccountsTest do
   describe "users" do
     alias Paironauts.Accounts.User
 
-    @valid_attrs %{hashed_password: "some hashed_password", permissions: %{}, username: "some username"}
-    @update_attrs %{hashed_password: "some updated hashed_password", permissions: %{}, username: "some updated username"}
+    @valid_attrs %{password: "some_password", permissions: %{}, username: "some username"}
+    @update_attrs %{password: "some_updated_password", permissions: %{}, username: "some updated username"}
     @invalid_attrs %{hashed_password: nil, permissions: nil, username: nil}
 
     def user_fixture(attrs \\ %{}) do
@@ -16,7 +16,7 @@ defmodule Paironauts.AccountsTest do
         |> Enum.into(@valid_attrs)
         |> Accounts.create_user()
 
-      user
+      Map.put(user, :password, nil)
     end
 
     test "list_users/0 returns all users" do
@@ -31,7 +31,7 @@ defmodule Paironauts.AccountsTest do
 
     test "create_user/1 with valid data creates a user" do
       assert {:ok, %User{} = user} = Accounts.create_user(@valid_attrs)
-      assert user.hashed_password == "some hashed_password"
+      assert Comeonin.Bcrypt.checkpw("some_password", user.hashed_password)
       assert user.permissions == %{}
       assert user.username == "some username"
     end
@@ -44,7 +44,7 @@ defmodule Paironauts.AccountsTest do
       user = user_fixture()
       assert {:ok, user} = Accounts.update_user(user, @update_attrs)
       assert %User{} = user
-      assert user.hashed_password == "some updated hashed_password"
+      assert Comeonin.Bcrypt.checkpw("some_updated_password", user.hashed_password)
       assert user.permissions == %{}
       assert user.username == "some updated username"
     end
