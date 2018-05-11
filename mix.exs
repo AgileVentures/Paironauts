@@ -5,7 +5,7 @@ defmodule Paironauts.Mixfile do
     [
       app: :paironauts,
       version: "0.0.1",
-      elixir: "~> 1.6",
+      elixir: "~> 1.6.0",
       elixirc_paths: elixirc_paths(Mix.env),
       compilers: [:phoenix, :gettext] ++ Mix.compilers,
       start_permanent: Mix.env == :prod,
@@ -33,15 +33,21 @@ defmodule Paironauts.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.3.0"},
-      {:phoenix_pubsub, "~> 1.0"},
-      {:phoenix_ecto, "~> 3.2"},
-      {:postgrex, ">= 0.0.0"},
-      {:phoenix_html, "~> 2.10"},
-      {:phoenix_live_reload, "~> 1.0", only: :dev},
-      {:gettext, "~> 0.11"},
-      {:cowboy, "~> 1.0"},
-      {:wallaby, "~> 0.19.2", only: :test}
+      {:phoenix, "1.3.2"},
+      {:phoenix_pubsub, "1.0.2"},
+      {:phoenix_ecto, "3.3.0"},
+      {:postgrex, "0.13.5"},
+      {:phoenix_html, "2.11.2"},
+      {:phoenix_live_reload, "1.1.5", only: :dev},
+      {:gettext, "0.15.0"},
+      {:cowboy, "1.1.2"},
+      {:ueberauth, "0.5.0"},
+      {:ueberauth_identity, "0.2.3"},
+      {:ueberauth_github, "0.7.0"},
+      {:guardian, "1.0.1"},
+      {:comeonin, "4.1.1"},
+      {:bcrypt_elixir, "1.0.6"},
+      {:wallaby, "0.19.2", only: :test}
     ]
   end
 
