@@ -1,5 +1,6 @@
-defmodule OlmecaWeb.Authorization do
-  use OlmecaWeb, :model
+defmodule PaironautsWeb.Authorization do
+  use Ecto.Schema
+  import Ecto.Changeset
 
   schema "authorizations" do
     field :provider, :string
@@ -10,7 +11,7 @@ defmodule OlmecaWeb.Authorization do
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
 
-    belongs_to :user, OlmecaWeb.User
+    belongs_to :user, PaironautsWeb.User
 
     timestamps()
   end

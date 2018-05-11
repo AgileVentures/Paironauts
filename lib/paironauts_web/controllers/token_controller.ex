@@ -1,7 +1,7 @@
-defmodule OlmecaWeb.TokenController do
-  use OlmecaWeb, :controller
+defmodule PaironautsWeb.TokenController do
+  use Paironauts.Web, :controller
 
-  alias OlmecaWeb.GuardianToken
+  alias PaironautsWeb.GuardianToken
   alias Guardian.Plug.EnsureAuthenticated
   alias Guardian.Plug.EnsurePermissions
 
@@ -23,7 +23,7 @@ defmodule OlmecaWeb.TokenController do
       token ->
         case Repo.delete(token) do
           {:ok, _} ->
-            {:ok, sub} = OlmecaWeb.GuardianSerializer.for_token(current_user)
+            {:ok, sub} = PaironautsWeb.GuardianSerializer.for_token(current_user)
             if sub == token.sub do
               conn
               |> put_flash(:info, "Done")

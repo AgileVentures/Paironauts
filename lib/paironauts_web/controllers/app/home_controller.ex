@@ -1,5 +1,5 @@
-defmodule OlmecaWeb.App.HomeController do
-  use OlmecaWeb, :app_controller
+defmodule PaironautsWeb.App.HomeController do
+  use Paironauts.Web, :app_controller
 
   plug EnsureAuthenticated, handler: __MODULE__, typ: "access"
 

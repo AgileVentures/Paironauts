@@ -1,8 +1,9 @@
-defmodule OlmecaWeb.GuardianToken do
-  use OlmecaWeb, :model
+defmodule PaironautsWeb.GuardianToken do
+  use Ecto.Schema
+  import Ecto.Changeset
 
-  alias Olmeca.Repo
-  alias OlmecaWeb.GuardianSerializer
+  alias Paironauts.Repo
+  alias PaironautsWeb.GuardianSerializer
 
   @primary_key {:jti, :string, []}
   @derive {Phoenix.Param, key: :jti}
@@ -20,7 +21,7 @@ defmodule OlmecaWeb.GuardianToken do
   def for_user(user) do
     case GuardianSerializer.for_token(user) do
       {:ok, aud} ->
-        (from t in OlmecaWeb.GuardianToken, where: t.sub == ^aud)
+        (from t in PaironautsWeb.GuardianToken, where: t.sub == ^aud)
           |> Repo.all
       _ -> []
     end

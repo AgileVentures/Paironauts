@@ -1,7 +1,7 @@
-defmodule OlmecaWeb.AuthorizationController do
-  use OlmecaWeb, :controller
+defmodule PaironautsWeb.AuthorizationController do
+  use PaironautsWeb, :controller
 
-  alias Olmeca.Repo
+  alias Paironauts.Repo
 
   def index(conn, _params, current_user, _claims) do
     render conn, "index.html", current_user: current_user, authorizations: authorizations(current_user)

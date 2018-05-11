@@ -1,12 +1,12 @@
-defmodule OlmecaWeb.AuthController do
+defmodule PaironautsWeb.AuthController do
   @moduledoc """
   Handles the Überauth integration.
   This controller implements the request and callback phases for all providers.
   The actual creation and lookup of users/authorizations is handled by UserFromAuth
   """
-  use OlmecaWeb, :controller
+  use PaironautsWeb, :controller
 
-  alias OlmecaWeb.UserFromAuth
+  alias PaironautsWeb.UserFromAuth
 
   plug Ueberauth
 
@@ -52,7 +52,7 @@ defmodule OlmecaWeb.AuthController do
   end
 
   defp auths(nil), do: []
-  defp auths(%OlmecaWeb.User{} = user) do
+  defp auths(%Paironauts.User{} = user) do
     Ecto.assoc(user, :authorizations)
       |> Repo.all
       |> Enum.map(&(&1.provider))

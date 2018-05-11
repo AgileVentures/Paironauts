@@ -1,10 +1,10 @@
-defmodule OlmecaWeb.Admin.UserController do
-  use OlmecaWeb, :admin_controller
+defmodule PaironautsWeb.Admin.UserController do
+  use Paironauts.Web, :admin_controller
 
-  alias OlmecaWeb.User
+  alias PaironautsWeb.User
 
   # Make sure that we have a valid token in the :admin area of the session
-  # We've aliased Guardian.Plug.EnsureAuthenticated in our OlmecaWeb.Web.admin_controller macro
+  # We've aliased Guardian.Plug.EnsureAuthenticated in our PaironautsWeb.Web.admin_controller macro
   plug EnsureAuthenticated, handler: __MODULE__, key: :admin
 
   def index(conn, _params, current_user, _claims) do

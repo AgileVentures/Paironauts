@@ -1,4 +1,4 @@
-defmodule OlmecaWeb.Controller.Helpers do
+defmodule PaironautsWeb.Controller.Helpers do
   import Plug.Conn
 
   def redirect_back(conn, alternative \\ "/") do

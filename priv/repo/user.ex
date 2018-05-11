@@ -1,14 +1,14 @@
-defmodule OlmecaWeb.User do
-	use OlmecaWeb, :model
-
-	alias Olmeca.Repo
+defmodule Paironauts.User do
+  use Ecto.Schema
+  import Ecto.Changeset
+	alias Paironauts.Repo
 
   schema "users" do
     field :name, :string
     field :email, :string
     field :is_admin, :boolean
 
-    has_many :authorizations, OlmecaWeb.Authorization
+    has_many :authorizations, PaironautsWeb.Authorization
 
     timestamps()
   end
