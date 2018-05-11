@@ -45,6 +45,7 @@ defmodule Paironauts.Mixfile do
       {:ueberauth_identity, "0.2.3"},
       {:ueberauth_github, "0.7.0"},
       {:guardian, "1.0.1"},
+      {:guardian_db, "1.1.0"},
       {:comeonin, "4.1.1"},
       {:bcrypt_elixir, "1.0.6"},
       {:wallaby, "0.19.2", only: :test}
