@@ -31,44 +31,44 @@ defmodule Paironauts.AcceptanceTest do
     end
 
     # third user should not be added to the same jitsi
-    # test "when two users choose 'pair' from the homepage, they are added to a Jitsi", %{session: session1} do
-    #   session1
-    #   |> visit("/")
-    #   |> click(css("#pair"))
-    #   |> has_text?("Waiting for pair partner")
-    #   |> assert
-    #
-    #   # will see "waiting for pair"
-    #   # and jitsi visible
-    #   # |> assert_has(css("#meet"))  # checking for the meet div
-    #
-    #   {:ok, session2} = Wallaby.start_session
-    #   session2
-    #   |> visit("/")
-    #   |> click(css("#pair"))
-    #   |> find(css("#pairing_session"))
-    #   |> has_text?("Waiting for pair partner")
-    #   |> refute
-    #
-    #   session1
-    #   |> has_text?("Pairing session")
-    #   |> assert
-    #
-    #   # check redirected to /pairing-2345678 /pairing/2345678
-    #   # check
-    #   # |> has_text?("Paironauts")
-    #   # |> assert
-    #
-    #   # session1
-    #   # # check redirected to /pairing-2345678
-    #   # |> assert
-    #
-    # end
-    #
+    test "when two users choose 'pair' from the homepage, they are added to a Jitsi", meta do
+      in_browser_session "session1", fn ->
+        navigate_to("/")
+        element = find_element(:id, "pair")
+        click(element)
+        assert(visible_text("Waiting for pair partner"))
+      end
+
+      # will see "waiting for pair"
+      # and jitsi visible
+      # |> assert_has(css("#meet"))  # checking for the meet div
+
+      in_browser_session "session2", fn ->
+        navigate_to("/")
+        element = find_element(:id, "pair")
+        click(element)
+        find_element = find_element(:id, "pairing_session")
+        refute(visible_text("Waiting for pair partner"))
+      end
+
+      change_session_to("session1")
+        assert(visible_text("Pairing session"))
+
+      # check redirected to /pairing-2345678 /pairing/2345678
+      # check
+      # |> has_text?("Paironauts")
+      # |> assert
+
+      # session1
+      # # check redirected to /pairing-2345678
+      # |> assert
+
+    end
+
     # ensure only two users arrive in pairing session (and both of them were waiting to pair)
     # 1. don't drag users off other pages
     # 2. don't drag users out of existing pairing sessions
-    #
+
     # test "user on home page who hasn't chosen to pair is not pulled into pairing session", %{session: first_user_wanting_to_pair} do
     #   first_user_wanting_to_pair
     #   |> visit("/")
