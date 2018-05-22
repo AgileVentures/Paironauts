@@ -24,8 +24,9 @@ defmodule Paironauts.AcceptanceTest do
       element = find_element(:id, "mob")
       click(element)
 
-      find_element(:id, "meet")
-      |> assert
+      element = find_element(:id, "meet")
+
+      assert(element)
     end
 
     # third user should not be added to the same jitsi
