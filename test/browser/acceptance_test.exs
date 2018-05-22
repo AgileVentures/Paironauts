@@ -24,7 +24,8 @@ defmodule Paironauts.AcceptanceTest do
       element = find_element(:id, "mob")
       click(element)
 
-      assert(find_element(:id, "meet"))
+      find_element(:id, "meet")
+      |> assert
     end
 
     # third user should not be added to the same jitsi
@@ -33,7 +34,10 @@ defmodule Paironauts.AcceptanceTest do
         navigate_to("/")
         element = find_element(:id, "pair")
         click(element)
-        assert(visible_text({:css, "#wait"}), "Waiting for pair partner")
+
+        find_element(:id, "wait")
+        |> visible_text
+        |> assert("Waiting for pair partner")
       end
 
       in_browser_session"session2", fn ->
@@ -41,12 +45,16 @@ defmodule Paironauts.AcceptanceTest do
         element = find_element(:id, "pair")
         click(element)
 
-        element = find_element(:id, "wait")
-        assert(visible_text(element), "Pairing session")
+        find_element(:id, "wait")
+        |> visible_text
+        |> assert("Pairing session")
       end
 
       change_session_to("session1")
-      assert(visible_text({:css, "#wait"}), "Pairing session")
+
+      find_element(:id, "wait")
+      |> visible_text
+      |> assert("Pairing session")
 
       # check redirected to /pairing-2345678 /pairing/2345678
       # check
