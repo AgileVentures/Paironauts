@@ -41,15 +41,12 @@ defmodule Paironauts.AcceptanceTest do
         |> assert
       end
 
-      in_browser_session"session2", fn ->
+      in_browser_session "session2", fn ->
         navigate_to("/")
         element = find_element(:id, "pair")
         click(element)
 
-        find_element(:tag, "main")
-        |> visible_text
-        |> Kernel.=~("Waiting for pair partner...")
-        |> refute
+        refute text_visible?({:css, "main"}, "Waiting for pair partner...", 12)
       end
 
       change_session_to("session1")
@@ -95,8 +92,9 @@ defmodule Paironauts.AcceptanceTest do
         element = find_element(:id, "pair")
         click(element)
 
-        element = find_element(:tag, "main")
-        assert(visible_text(element) =~ "Pairing session")
+
+        # element = find_element(:tag, "main")
+        assert text_visible?({:css, "main"}, "Pairing session", 12)
       end
 
       change_session_to("first_user_wanting_to_pair")
@@ -109,5 +107,22 @@ defmodule Paironauts.AcceptanceTest do
     # test '...'
     # test '...'
     # both if on homepage and even if on the pairing waiting room, or in other pairing
+    # Will automatically retry looking for asynchronous text change
+    defp text_visible?(element, pattern, retries \\ 5)
 
+    defp text_visible?(element, pattern, 0) do
+      visible_in_element?(element, pattern)
+    end
+
+    defp text_visible?(element, pattern, retries) do
+      case visible_in_element?(element, pattern) do
+        true -> true
+
+        false ->
+          :timer.sleep(10)
+          text_visible?(element, pattern, retries - 1)
+      end
+    end
   end
+
+
