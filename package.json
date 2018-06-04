@@ -1,0 +1,26 @@
+{
+  "name": "paironauts",
+  "version": "0.0.0",
+  "description": "Find a Pair Partner Online",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AgileVentures/Paironauts.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AgileVentures/Paironauts/issues"
+  },
+  "homepage": "https://github.com/AgileVentures/Paironauts#readme",
+  "devDependencies": {
+    "phantomjs25-beta": "^1.0.21"
+  }
+}

@@ -37,7 +37,8 @@ defmodule Paironauts.AcceptanceTest do
         parent_element = find_element(:tag, "main")
         find_within_element(parent_element, :id, "wait")
         |> visible_text()
-        |> assert("This isn't testing anything")
+        |> Kernel.=~("Waiting for pair partner...")
+        |> assert
       end
 
       in_browser_session"session2", fn ->
@@ -47,14 +48,16 @@ defmodule Paironauts.AcceptanceTest do
 
         find_element(:tag, "main")
         |> visible_text
-        |> assert("Pairing session")
+        |> Kernel.=~("Waiting for pair partner...")
+        |> refute
       end
 
       change_session_to("session1")
 
       find_element(:tag, "main")
       |> visible_text
-      |> assert("Pairing session")
+      |> Kernel.=~("Pairing session")
+      |> assert
 
       # check redirected to /pairing-2345678 /pairing/2345678
       # check
@@ -77,7 +80,7 @@ defmodule Paironauts.AcceptanceTest do
         element = find_element(:id, "pair")
         click(element)
 
-        assert(visible_text({:tag, "main"}), "Waiting for pair partner")
+        assert(visible_text({:tag, "main"}) =~ "Waiting for pair partner")
       end
 
       # user on home page (also need to check for user in pairing session, and third user waiting)
@@ -93,11 +96,11 @@ defmodule Paironauts.AcceptanceTest do
         click(element)
 
         element = find_element(:tag, "main")
-        assert(visible_text(element), "Pairing session")
+        assert(visible_text(element) =~ "Pairing session")
       end
 
       change_session_to("first_user_wanting_to_pair")
-      assert(visible_text({:tag, "main"}), "Pairing session")
+      assert(visible_text({:tag, "main"}) =~ "Pairing session")
 
       change_session_to("user_not_wanting_to_pair")
       assert(find_element(:id, "pair"))

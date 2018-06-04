@@ -19,3 +19,6 @@ config :paironauts, Paironauts.Repo,
   database: "paironauts_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+
+config :wallaby, phantomjs: "node_modules/.bin/phantomjs"
