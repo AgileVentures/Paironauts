@@ -3,7 +3,7 @@
 // as long as we were to do it without obfuscating stuff or making it super unwieldy
 
 if(typeof JitsiMeetExternalAPI != "undefined") {
-  var domain = "meet.jit.si";
+  var domain = "www.jitsi.agileventures.org";
   var options = {
       roomName: window.location.pathname.substr(1),
       width: 700,
