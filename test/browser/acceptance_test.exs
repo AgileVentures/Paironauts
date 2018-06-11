@@ -46,7 +46,7 @@ defmodule Paironauts.AcceptanceTest do
         element = find_element(:id, "pair")
         click(element)
 
-        refute text_visible?({:css, "main"}, "Waiting for pair partner...", 12)
+        refute text_visible?({:css, "main"}, ~r/Waiting for pair partner.../, 12) #fail
       end
 
       change_session_to("session1")
@@ -76,8 +76,7 @@ defmodule Paironauts.AcceptanceTest do
         navigate_to("/")
         element = find_element(:id, "pair")
         click(element)
-
-        assert(visible_text({:tag, "main"}) =~ "Waiting for pair partner")
+        assert(visible_text({:tag, "main"}) =~ ~r/Waiting for pair partner/) # failing
       end
 
       # user on home page (also need to check for user in pairing session, and third user waiting)
@@ -94,11 +93,11 @@ defmodule Paironauts.AcceptanceTest do
 
 
         # element = find_element(:tag, "main")
-        assert text_visible?({:css, "main"}, "Pairing session", 12)
+        assert text_visible?({:css, "main"}, ~r/Pairing session/, 12)
       end
 
       change_session_to("first_user_wanting_to_pair")
-      assert(visible_text({:tag, "main"}) =~ "Pairing session")
+      assert(visible_text({:tag, "main"}) =~ ~r/Pairing session/)
 
       change_session_to("user_not_wanting_to_pair")
       assert(find_element(:id, "pair"))
