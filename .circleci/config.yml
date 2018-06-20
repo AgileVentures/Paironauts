@@ -34,13 +34,16 @@ jobs:
       - run: cd ..
 
       - run: |
-          export DISPLAY=:99.0
           export CHROMEDRIVER_VERSION=`curl -s http://chromedriver.storage.googleapis.com/LATEST_RELEASE`
           curl -L -O "http://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip"
           unzip chromedriver_linux64.zip
           sudo chmod +x chromedriver
           sudo mv chromedriver /usr/local/bin
-          nohup chromedriver &
           google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+
+      -run:
+         name: Start chromedriver
+         command: |
+           nohup chromedriver &
 
       - run: mix test
