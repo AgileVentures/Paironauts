@@ -24,8 +24,10 @@ defmodule Paironauts.AcceptanceTest do
       element = find_element(:id, "mob")
       click(element)
 
-      find_element(:id, "meet")
-      |> assert
+      assert text_visible?({:css, "main"}, ~r/Mobbing session/, 12)
+
+      # find_element(:id, "meet")
+      # |> assert
     end
 
     # third user should not be added to the same jitsi
@@ -45,8 +47,8 @@ defmodule Paironauts.AcceptanceTest do
         navigate_to("/")
         element = find_element(:id, "pair")
         click(element)
-
-        refute text_visible?({:css, "main"}, ~r/Waiting for pair partner.../, 12) #fail
+        # wait for the browser to settle
+        assert text_visible?({:css, "main"}, ~r/Pairing session/, 12) #fail
       end
 
       change_session_to("session1")
