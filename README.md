@@ -4,6 +4,18 @@ Hello, we are Paironauts. We’re glad you’re thinking about boldly going with
 
 Paironauts will give developers, aspiring and established, a platform to get together online and work on code collaboratively. There are many reasons it can be difficult to find partners to work with on coding projects: geographic isolation, a lack of confidence - especially if you’re just starting out on something, or just initial unfamiliarity with pair programming. We’re creating a platform that will reduce the friction that can prevent collaborations from happening. We want people to be able to open up Paironauts, find a great partner as easily as possible and start coding together, supported by a solid real-time web system.
 
+Overview Video
+--------------
+
+Please see the following video for an overview of the project :
+
+<p align="center">
+  <a href="http://www.youtube.com/watch?v=erfYu1WAWzE" title="Paironauts Overview">
+    <img src="http://img.youtube.com/vi/erfYu1WAWzE/0.jpg">
+  </a>
+</p>
+
+
 There are many online platforms the allow users to interact in real-time for a some purpose (or none at all). Paironauts, as one of those, is focused specifically on supporting collaborative programming efforts - whether in pairs, or in “mobs” of more than two participants.
 
 Please join us by attending.
