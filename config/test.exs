@@ -19,3 +19,9 @@ config :paironauts, Paironauts.Repo,
   database: "paironauts_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :wallaby,
+  screenshot_on_failure: true,
+  phantomjs: "node_modules/.bin/phantomjs",
+  phantomjs_args: "--webdriver-logfile=log/phantomjs.log",
+  js_logger: "log/acceptance_browser.log"

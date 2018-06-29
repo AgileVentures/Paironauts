@@ -1,0 +1,26 @@
+{
+  "name": "paironauts",
+  "version": "1.0.0",
+  "description": "Hello, we are Paironauts. We’re glad you’re thinking about boldly going with us!",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AgileVentures/Paironauts.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AgileVentures/Paironauts/issues"
+  },
+  "homepage": "https://github.com/AgileVentures/Paironauts#readme",
+  "devDependencies": {
+    "phantomjs-prebuilt": "^2.1.16"
+  }
+}

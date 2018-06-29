@@ -32,3 +32,4 @@ npm-debug.log
 /.elixir_ls
 
 screenshots/
+log/
