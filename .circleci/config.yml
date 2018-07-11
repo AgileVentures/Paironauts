@@ -42,7 +42,6 @@ jobs:
       - run:
           name: Start chromedriver
           command: |
-            chromedriver --port=9515  --verbose --log-path=$CIRCLE_ARTIFACTS/chromedriver.log:
-            background: true
+            chromedriver --port=9515  --verbose background: true
 
       - run: mix test
