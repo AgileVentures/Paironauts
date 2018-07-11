@@ -42,7 +42,7 @@ jobs:
       - run:
           name: Start chromedriver
           command: |
-            ./chromedriver --url-base=wd/hub --port=9515  --verbose --log-path=$CIRCLE_ARTIFACTS/chromedriver.log:
-               background: true
+            chromedriver --url-base=wd/hub --port=9515  --verbose --log-path=$CIRCLE_ARTIFACTS/chromedriver.log:
+            background: true
 
       - run: mix test
