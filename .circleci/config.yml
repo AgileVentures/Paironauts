@@ -42,7 +42,4 @@ jobs:
       - run:
           name: Start chromedriver
           command: |
-            chromedriver --verbose:
-            background: true
-
-      - run: mix test
+            chromedriver & mix test
